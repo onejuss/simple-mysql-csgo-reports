@@ -38,27 +38,6 @@ Database Connect()
 	return db;
 }
 
-public int ReasonMenuHandler(Menu menu, MenuAction action, int param1, int param2)
-{
-	/* If an option was selected, tell the client about the item. */
-	if (action == MenuAction_Select)
-	{
-		char info[32];
-		bool found = menu.GetItem(param2, info, sizeof(info));
-		PrintToConsole(param1, "You selected item: %d (found? %d info: %s)", param2, found, info);
-	}
-	/* If the menu was cancelled, print a message to the server about it. */
-	else if (action == MenuAction_Cancel)
-	{
-		PrintToServer("Client %d's menu was cancelled.  Reason: %d", param1, param2);
-	}
-	/* If the menu has ended, destroy it */
-	else if (action == MenuAction_End)
-	{
-		delete menu;
-	}
-}
-
 public int PlayersMenuHandler(Menu menu, MenuAction action, int param1, int param2)
 {
 	/* If an option was selected, tell the client about the item. */
@@ -142,22 +121,6 @@ public Action Players_Menu(int client, int args)
 		}
 	}
 
-	menu.ExitButton = true;
-	menu.ExitBackButton = true;
-	menu.Display(client, 20);
-
-	return Plugin_Handled;
-}
-
-
-public Action Menu_Reasons(int client, int args)
-{
-	Menu menu = new Menu(ReasonMenuHandler);
-	menu.SetTitle("Select reason %s", args);
-	menu.AddItem("wallhack", "Wallhack");
-	menu.AddItem("aim", "Aim");
-	menu.AddItem("speedhack", "Speedhack");
-	menu.AddItem("cheating", "Cheating");
 	menu.ExitButton = true;
 	menu.ExitBackButton = true;
 	menu.Display(client, 20);
