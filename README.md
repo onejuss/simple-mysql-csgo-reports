@@ -1,7 +1,7 @@
 # simple-mysql-csgo-reports
 
 
-As the title says, this plugin allows players made reports on players that behave bad, this is my first plugin ever, so mods please check the SP file..
+As the title says, this plugin allows players made reports on players that behave bad
 
 How it works
 Simple in game chat you type !report the menu with players will pop up, you choose the player and he's steam_id will be stored to your database in column reported, in column reporter you can find steam_id of the player who made report
